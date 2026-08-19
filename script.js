@@ -1,22 +1,16 @@
-// Menu mobilne
-(function () {
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function () {
     const toggle = document.getElementById('menuToggle');
     const nav = document.getElementById('mainNav');
-    if (!toggle || !nav) return;
-
-    toggle.addEventListener('click', () => {
-        nav.classList.toggle('open');
-    });
-
-    nav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => nav.classList.remove('open'));
-    });
-})();
-
-// Po wysłaniu FormSubmit wraca na stronę do sekcji kontakt
-(function () {
-    const next = document.querySelector('#contactForm input[name="_next"]');
-    if (next) {
-        next.value = window.location.href.split('#')[0] + '#kontakt';
+    if (toggle && nav) {
+        toggle.addEventListener('click', function () {
+            nav.classList.toggle('open');
+        });
+        // Close menu when clicking a link
+        nav.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                nav.classList.remove('open');
+            });
+        });
     }
-})();
+});
