@@ -55,8 +55,8 @@
             </div>
             <div class="feature-card">
                 <div class="feature-icon">👮</div>
-                <h3>Dane</h3>
-                <p>Szybki dostęp do danych osób i jednostek – bez szukania w papierach.</p>
+                <h3>Komendant zmiany</h3>
+                <p>Stanowisko, skład i szybki dostęp do danych – bez szukania w notatkach.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📋</div>
@@ -71,7 +71,7 @@
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
                 <h3>Statystyki</h3>
-                <p>Automatyczne zliczanie interwencji i sprawdzeń – gotowe do raportu.</p>
+                <p>Automatyczne zliczanie interwencji i sprawdzeń – gotowe do raportu i eksportu Excel.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">⚙️</div>
@@ -161,70 +161,110 @@
                 <div class="example-step-body">
                     <p>
                         Centralna lista zdarzeń i zadań na zmianie. Widzisz godzinę, opis,
-                        patrol i status – wszystko w jednym miejscu.
+                        patrol i status – wszystko w jednym miejscu. Filtry po liniach,
+                        szybkie oznaczanie i podgląd aktualnego czasu.
                     </p>
                     <ul class="example-benefits">
                         <li>Filtrowanie po liniach i typach zdarzeń</li>
-                        <li>Oznaczenie „zrobione” / „przeterminowane”</li>
+                        <li>Oznaczenie „zrobione” / „przeterminowane” z mrugającym alertem</li>
                         <li>Szybka edycja i historia wpisów</li>
                         <li>Mniej zgubionych zadań na zmianie</li>
                     </ul>
-                    <div class="ui-mock">
-                        <div class="ui-label">Lista wydarzeń</div>
-                        <table class="ui-table">
-                            <thead>
-                                <tr>
-                                    <th>Godzina</th>
-                                    <th>Opis</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>08:15</td>
-                                    <td>Patrol nr 1 – sprawdzenie obszaru</td>
-                                    <td><span class="ui-tile green" style="padding:4px 10px;font-size:0.75rem;">Zrobione</span></td>
-                                </tr>
-                                <tr>
-                                    <td>09:40</td>
-                                    <td>Polecenie – rejon stacji osobowej</td>
-                                    <td><span class="ui-tile active" style="padding:4px 10px;font-size:0.75rem;">W toku</span></td>
-                                </tr>
-                                <tr>
-                                    <td>11:00</td>
-                                    <td>Sprawdzenie linii</td>
-                                    <td><span class="ui-tile muted" style="padding:4px 10px;font-size:0.75rem;">Oczekuje</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="ui-mock ksiazka-mock">
+                        <div class="ksiazka-sticky-bar">
+                            <div class="ksiazka-sticky-left">
+                                <span class="ksiazka-now">Aktualna godzina: <strong>15:00</strong></span>
+                            </div>
+                            <div class="ksiazka-sticky-right">
+                                <span class="ui-btn green">+ Dodaj wpis</span>
+                                <span class="ui-btn">📋 Plan służby</span>
+                            </div>
+                        </div>
+                        <div class="ksiazka-filters">
+                            <span class="ui-tile active">Wszystkie</span>
+                            <span class="ui-tile">Linia 1</span>
+                            <span class="ui-tile">Linia 2</span>
+                            <span class="ui-tile">Linia 3</span>
+                            <span class="ui-tile">Patrol</span>
+                        </div>
+                        <div class="ksiazka-header-row">
+                            <span>Godzina</span>
+                            <span>Opis / Patrol</span>
+                            <span>Akcje</span>
+                        </div>
+                        <!-- 14:00 – zrobione (zielony) -->
+                        <div class="ksiazka-row ksiazka-done">
+                            <div class="ksiazka-col-time">
+                                <div class="ksiazka-time">14:00</div>
+                                <div class="ksiazka-date">19.08.2026</div>
+                                <div class="ksiazka-patrol">Patrol nr 1</div>
+                            </div>
+                            <div class="ksiazka-col-info">
+                                Patrol nr 1 zgłosił się ze sprawdzenia obszaru kolejowego. Podczas patrolu uwag nie stwierdzono.
+                            </div>
+                            <div class="ksiazka-col-actions">
+                                <span class="ui-tile green" style="padding:4px 10px;font-size:0.75rem;">✓ Zrobione</span>
+                            </div>
+                        </div>
+                        <!-- 14:55 – mrugający czerwony (przeterminowany) -->
+                        <div class="ksiazka-row ksiazka-overdue">
+                            <div class="ksiazka-col-time">
+                                <div class="ksiazka-time">14:55</div>
+                                <div class="ksiazka-date">19.08.2026</div>
+                                <div class="ksiazka-patrol">Patrol nr 2</div>
+                            </div>
+                            <div class="ksiazka-col-info">
+                                Polecenie – rejon stacji osobowej. Sprawdzenie linii i terenu przyległego.
+                            </div>
+                            <div class="ksiazka-col-actions">
+                                <span class="ui-tile overdue-badge" style="padding:4px 10px;font-size:0.75rem;">⚠ Przeterminowane</span>
+                            </div>
+                        </div>
+                        <!-- 16:00 – biały / oczekuje -->
+                        <div class="ksiazka-row">
+                            <div class="ksiazka-col-time">
+                                <div class="ksiazka-time">16:00</div>
+                                <div class="ksiazka-date">19.08.2026</div>
+                                <div class="ksiazka-patrol">Patrol nr 1</div>
+                            </div>
+                            <div class="ksiazka-col-info">
+                                Sprawdzenie linii – odcinek szlaku. Oczekuje na realizację.
+                            </div>
+                            <div class="ksiazka-col-actions">
+                                <span class="ui-tile muted" style="padding:4px 10px;font-size:0.75rem;">Oczekuje</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. DANE -->
+            <!-- 2. KOMENDANT ZMIANY / DANE -->
             <div class="example-step">
                 <div class="example-step-header">
                     <div class="step-num">2</div>
                     <span class="step-icon">👮</span>
-                    <h4>Dane</h4>
+                    <h4>Komendant zmiany</h4>
                 </div>
                 <div class="example-step-body">
                     <p>
-                        Zakładka z danymi osób i konfiguracją jednostki. Ułatwia
-                        uzupełnianie wpisów bez przepisywania z notatek.
+                        Zakładka z danymi komendanta zmiany, stanowiskiem oraz składem.
+                        Ułatwia uzupełnianie wpisów bez przepisywania z notatek.
                     </p>
                     <ul class="example-benefits">
-                        <li>Dane komendanta zmiany i składu</li>
-                        <li>Szybkie wstawianie do generatora</li>
+                        <li>Komendant zmiany (KZ) i stanowisko</li>
+                        <li>Skład – szybkie wstawianie do generatora</li>
                         <li>Zapis i wczytanie stanu pracy</li>
                     </ul>
                     <div class="ui-mock">
                         <div class="ui-label">Komendant zmiany (KZ)</div>
                         <div class="ui-input">Kowalski Jan</div>
-                        <div class="ui-label">Skład / dodatkowe dane</div>
+                        <div class="ui-label">Stanowisko</div>
+                        <div class="ui-input">Kierownik zmiany</div>
+                        <div class="ui-label">Skład</div>
                         <div class="ui-tiles">
                             <span class="ui-tile">Nowak A.</span>
                             <span class="ui-tile">Wiśniewski P.</span>
+                            <span class="ui-tile">Lewandowski M.</span>
                         </div>
                         <div style="margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;">
                             <span class="ui-btn green">💾 Zapisz dane</span>
@@ -347,12 +387,15 @@
                 <div class="example-step-body">
                     <p>
                         System sam zlicza interwencje i sprawdzenia. Nie liczysz
-                        ręcznie – masz gotowe podsumowanie.
+                        ręcznie – masz gotowe podsumowanie oraz eksport do programu Excel
+                        ze wszystkimi informacjami: godzina, nr linii, szlak, stacja,
+                        rodzaj sprawdzenia i wiele więcej.
                     </p>
                     <ul class="example-benefits">
                         <li>Interwencje: MKK, pouczenia, legitymowania</li>
                         <li>Sprawdzenia: szlak, stacja towarowa / osobowa</li>
-                        <li>Eksport i historia</li>
+                        <li>Gotowy eksport do Excel z pełnymi danymi</li>
+                        <li>Historia i podsumowania okresowe</li>
                     </ul>
                     <div class="ui-mock">
                         <div class="ui-label">Interwencje (łącznie)</div>
@@ -379,6 +422,9 @@
                             <span class="ui-tile">Szlak: 14</span>
                             <span class="ui-tile">Stacja osobowa: 9</span>
                             <span class="ui-tile">Stacja towarowa: 4</span>
+                        </div>
+                        <div style="margin-top:14px;">
+                            <span class="ui-btn" style="background:#d97706;">📥 Eksport do Excel</span>
                         </div>
                     </div>
                 </div>
@@ -427,66 +473,50 @@
                 </div>
             </div>
 
-            <!-- 8. LINIE -->
+            <!-- 8. LINIE – tylko nagłówek -->
             <div class="example-step">
                 <div class="example-step-header">
                     <div class="step-num">8</div>
                     <span class="step-icon">🚉</span>
                     <h4>Linie</h4>
                 </div>
+            </div>
+
+            <!-- 9. PEŁNA AUTOMATYZACJA -->
+            <div class="example-step">
+                <div class="example-step-header">
+                    <div class="step-num">9</div>
+                    <span class="step-icon">🚀</span>
+                    <h4>Pełna automatyzacja</h4>
+                </div>
                 <div class="example-step-body">
                     <p>
-                        Czas pracy na trzech liniach. Po wyborze osoby system
-                        automatycznie generuje podział czasu i gotowy wpis – bez
-                        ręcznego liczenia minut.
+                        Gotowe szablony i formularze, które pozwalają zaplanować służbę,
+                        sprawdzić status zadań i działać spokojnie – bez chaosu i ręcznego
+                        liczenia minut.
                     </p>
                     <ul class="example-benefits">
-                        <li>Trzy linie – osobny czas na każdej</li>
-                        <li>Wybór osoby → automatyczne wyliczenie</li>
-                        <li>Gotowy wynik do skopiowania / raportu</li>
+                        <li>Gotowe szablony planów służby – wczytujesz i dostosowujesz</li>
+                        <li>Gotowe formularze wpisów i raportów</li>
+                        <li>Zaplanuj → sprawdź → działaj spokojnie</li>
+                        <li>Jednolity standard dokumentacji w całej jednostce</li>
                     </ul>
                     <div class="ui-mock">
-                        <div class="ui-label">Osoba</div>
+                        <div class="ui-label">Szablony planów służby</div>
                         <div class="ui-tiles">
-                            <span class="ui-tile active">Kowalski Jan</span>
-                            <span class="ui-tile">Nowak A.</span>
-                            <span class="ui-tile">Wiśniewski P.</span>
+                            <span class="ui-tile active">Plan standardowy</span>
+                            <span class="ui-tile">Plan weekendowy</span>
+                            <span class="ui-tile">Plan wzmocniony</span>
                         </div>
-                        <div class="ui-label" style="margin-top:14px;">Czas na liniach (wygenerowany automatycznie)</div>
-                        <table class="ui-table">
-                            <thead>
-                                <tr>
-                                    <th>Linia</th>
-                                    <th>Od</th>
-                                    <th>Do</th>
-                                    <th>Czas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Linia 1</td>
-                                    <td>06:00</td>
-                                    <td>09:30</td>
-                                    <td>3 h 30 min</td>
-                                </tr>
-                                <tr>
-                                    <td>Linia 2</td>
-                                    <td>09:30</td>
-                                    <td>13:00</td>
-                                    <td>3 h 30 min</td>
-                                </tr>
-                                <tr>
-                                    <td>Linia 3</td>
-                                    <td>13:00</td>
-                                    <td>14:00</td>
-                                    <td>1 h</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="ui-label" style="margin-top:14px;">Podsumowanie</div>
-                        <div class="ui-result">
-                            <strong>Kowalski Jan</strong> – łącznie <strong>8 h</strong>
-                            (Linia 1: 3:30 · Linia 2: 3:30 · Linia 3: 1:00)
+                        <div class="ui-label" style="margin-top:14px;">Formularze</div>
+                        <div class="ui-tiles">
+                            <span class="ui-tile green">Raport dobowy</span>
+                            <span class="ui-tile green">Ewidencja sprawdzeń</span>
+                            <span class="ui-tile green">Podsumowanie interwencji</span>
+                        </div>
+                        <div class="ui-result" style="margin-top:14px;">
+                            <strong>Zaplanuj, sprawdź i działaj spokojnie.</strong><br>
+                            System prowadzi Cię przez całą zmianę – od planu po gotowy raport.
                         </div>
                     </div>
                 </div>
@@ -508,8 +538,27 @@
     <div class="container">
         <h2>Zainteresowany automatyzacją?</h2>
         <p class="section-sub">
-            Zostaw swoje dane – odezwię się i omówimy, co można zautomatyzować w Twoim przypadku.
+            Zostaw swoje dane – odezwiemy się i omówimy, co można zautomatyzować w Twoim przypadku.
         </p>
+
+        <div class="launch-info">
+            <div class="launch-badge">
+                <span class="launch-icon">📅</span>
+                <div>
+                    <strong>Planowane rozpoczęcie działania aplikacji</strong>
+                    <span>01.01.2027 r.</span>
+                </div>
+            </div>
+            <div class="price-box">
+                <div class="price-label">Subskrypcja podstawowa</div>
+                <div class="price-value">19,99 <span>zł</span> <small>/ miesiąc</small></div>
+            </div>
+        </div>
+
+        <div class="cta-message">
+            <p><strong>Jesteś zainteresowany?</strong> Bądź z nami na bieżąco. Zostaw informacje, a my będziemy Cię informować o naszych postępach.</p>
+            <p>Automatyzacja to ułatwienie w pracy. Nie ma czegoś tutaj dla Ciebie? <strong>Opisz sytuację, a my ją rozwiążemy za Ciebie.</strong></p>
+        </div>
 
         <div class="form-section">
             <!-- FormSubmit: wiadomość trafia na mathew1282@gmail.com -->
