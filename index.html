@@ -55,8 +55,8 @@
             </div>
             <div class="feature-card">
                 <div class="feature-icon">👮</div>
-                <h3>Komendant zmiany</h3>
-                <p>Stanowisko, skład i szybki dostęp do danych – bez szukania w notatkach.</p>
+                <h3>Dane</h3>
+                <p>Zakładka z danymi funkcjonariusza – stopień, imię i nazwisko uzupełniane automatycznie.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📋</div>
@@ -238,37 +238,30 @@
                 </div>
             </div>
 
-            <!-- 2. KOMENDANT ZMIANY / DANE -->
+            <!-- 2. DANE -->
             <div class="example-step">
                 <div class="example-step-header">
                     <div class="step-num">2</div>
                     <span class="step-icon">👮</span>
-                    <h4>Komendant zmiany</h4>
+                    <h4>Dane</h4>
                 </div>
                 <div class="example-step-body">
                     <p>
-                        Zakładka z danymi komendanta zmiany, stanowiskiem oraz składem.
-                        Ułatwia uzupełnianie wpisów bez przepisywania z notatek.
+                        Zakładka z danymi funkcjonariusza. Ułatwia uzupełnienie wpisów
+                        z automatu o stopień, imię i nazwisko.
                     </p>
                     <ul class="example-benefits">
-                        <li>Komendant zmiany (KZ) i stanowisko</li>
-                        <li>Skład – szybkie wstawianie do generatora</li>
-                        <li>Zapis i wczytanie stanu pracy</li>
+                        <li>Stopień, imię i nazwisko</li>
+                        <li>Automatyczne wstawianie do generatora</li>
+                        <li>Jedno kliknięcie – dane zapisane</li>
                     </ul>
                     <div class="ui-mock">
-                        <div class="ui-label">Komendant zmiany (KZ)</div>
-                        <div class="ui-input">Kowalski Jan</div>
-                        <div class="ui-label">Stanowisko</div>
-                        <div class="ui-input">Kierownik zmiany</div>
-                        <div class="ui-label">Skład</div>
-                        <div class="ui-tiles">
-                            <span class="ui-tile">Nowak A.</span>
-                            <span class="ui-tile">Wiśniewski P.</span>
-                            <span class="ui-tile">Lewandowski M.</span>
-                        </div>
-                        <div style="margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;">
+                        <div class="ui-label">Stanowisko / stopień</div>
+                        <div class="ui-input">st. sierż. Kowalski Jan</div>
+                        <div class="ui-label">Imię i nazwisko</div>
+                        <div class="ui-input">Jan Kowalski</div>
+                        <div style="margin-top:14px;">
                             <span class="ui-btn green">💾 Zapisz dane</span>
-                            <span class="ui-btn">📂 Wczytaj dane</span>
                         </div>
                     </div>
                 </div>
@@ -561,15 +554,12 @@
         </div>
 
         <div class="form-section">
-            <!-- FormSubmit: wiadomość trafia na mathew1282@gmail.com -->
             <form id="contactForm"
                   action="https://formsubmit.co/mathew1282@gmail.com"
                   method="POST">
-                <!-- Ustawienia FormSubmit -->
                 <input type="hidden" name="_subject" value="Nowe zgłoszenie – automatyzacja">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <!-- Po wysłaniu wraca na tę samą stronę z #dziekuje -->
                 <input type="hidden" name="_next" value="">
 
                 <div class="form-group">
