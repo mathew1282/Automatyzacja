@@ -265,53 +265,120 @@
         .benefit-box p strong { color: var(--text); }
 
         /* ========== EXAMPLES ========== */
-        .examples {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
+        .examples-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
         }
-        .example-card {
+        .example-step {
             background: var(--card);
             border-radius: var(--radius);
-            overflow: hidden;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
-            transition: box-shadow .2s;
+            overflow: hidden;
         }
-        .example-card:hover { box-shadow: var(--shadow-lg); }
-        .example-visual {
-            height: 160px;
-            background: linear-gradient(135deg, #e8eef7 0%, #f0f4f8 100%);
+        .example-step-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--border);
+        }
+        .step-num {
+            background: var(--accent);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: var(--accent);
-            position: relative;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
         }
-        .example-visual .badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: #fff;
-            color: var(--accent);
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
+        .example-step-header h4 {
+            font-size: 1.05rem;
+            font-weight: 650;
         }
-        .example-info {
+        .example-step-body {
             padding: 20px;
         }
-        .example-info h4 {
-            font-size: 1.1rem;
-            font-weight: 650;
-            margin-bottom: 6px;
-        }
-        .example-info p {
+        .example-step-body > p {
             color: var(--muted);
             font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        /* Mini UI mockups */
+        .ui-mock {
+            background: var(--gray-50);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .ui-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 6px;
+        }
+        .ui-input {
+            background: #fff;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+        .ui-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+        .ui-tiles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .ui-tile {
+            background: #fff;
+            border: 1px solid var(--gray-300);
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            color: var(--text);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+        .ui-tile.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .ui-tile.green {
+            background: #dcfce7;
+            border-color: #86efac;
+            color: #166534;
+        }
+        .ui-result {
+            margin-top: 14px;
+            background: #fff;
+            border: 1px solid var(--gray-300);
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--gray-700);
+        }
+        .ui-result strong {
+            color: var(--text);
         }
 
         /* Placeholder for future video / images */
@@ -442,7 +509,7 @@
                 border-radius: 16px;
             }
 
-            .features, .examples {
+            .features {
                 grid-template-columns: 1fr;
             }
         }
@@ -450,13 +517,12 @@
         @media (max-width: 400px) {
             .hero h1 { font-size: 1.6rem; }
             .btn { padding: 13px 22px; width: 100%; }
-            .feature-card, .example-card { padding: 20px; }
+            .feature-card { padding: 20px; }
         }
 
         /* Touch-friendly */
         @media (hover: none) {
-            .feature-card:hover,
-            .example-card:hover { box-shadow: var(--shadow); }
+            .feature-card:hover { box-shadow: var(--shadow); }
             .btn:hover { transform: none; }
         }
     </style>
@@ -601,54 +667,90 @@
     <div class="container">
         <h2>Przykłady z systemu SOK</h2>
         <p class="section-sub">
-            Zobacz, jak wygląda realna automatyzacja procesów służbowych.
+            Zobacz konkretny przepływ: od stworzenia patrolu, przez zgłoszenie, aż po gotowy wpis.
         </p>
 
-        <div class="examples">
-            <!-- Stworzenie patrolu -->
-            <div class="example-card">
-                <div class="example-visual">
-                    🚓
-                    <span class="badge">Przykład 1</span>
+        <div class="examples-flow">
+
+            <!-- KROK 1: Stwórz patrol -->
+            <div class="example-step">
+                <div class="example-step-header">
+                    <div class="step-num">1</div>
+                    <h4>Stwórz patrol</h4>
                 </div>
-                <div class="example-info">
-                    <h4>Stworzenie patrolu</h4>
-                    <p>
-                        Wybierasz lokalizację (np. Malczyce), numer patrolu i typ (pieszy / samochód).
-                        System od razu zapisuje dane i udostępnia je w generatorze wpisów.
-                    </p>
+                <div class="example-step-body">
+                    <p>Nadajesz patrolowi własną nazwę. System zapisuje go i udostępnia w kolejnych krokach.</p>
+                    <div class="ui-mock">
+                        <div class="ui-label">Nazwa patrolu</div>
+                        <div class="ui-input">Patrol nr 1</div>
+                        <div class="ui-label">Typ</div>
+                        <div class="ui-tiles">
+                            <span class="ui-tile active">Pieszy</span>
+                            <span class="ui-tile">Samochód</span>
+                        </div>
+                        <div style="margin-top:14px;">
+                            <span class="ui-btn">+ Utwórz patrol</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Stworzenie zgłoszenia -->
-            <div class="example-card">
-                <div class="example-visual">
-                    📋
-                    <span class="badge">Przykład 2</span>
+            <!-- KROK 2: Stwórz zgłoszenie -->
+            <div class="example-step">
+                <div class="example-step-header">
+                    <div class="step-num">2</div>
+                    <h4>Stwórz zgłoszenie</h4>
                 </div>
-                <div class="example-info">
-                    <h4>Stworzenie zgłoszenia</h4>
-                    <p>
-                        Dodajesz zgłoszenie z numerem, lokalizacją i opisem.
-                        Potem jednym kliknięciem wstawiasz je do generowanego wpisu służbowego.
-                    </p>
+                <div class="example-step-body">
+                    <p>Dodajesz zgłoszenie. System automatycznie łączy je z patrolami i gotowymi frazami.</p>
+                    <div class="ui-mock">
+                        <div class="ui-label">Patrol</div>
+                        <div class="ui-tiles">
+                            <span class="ui-tile active">Patrol nr 1</span>
+                        </div>
+
+                        <div class="ui-label" style="margin-top:14px;">Gotowe frazy (3 kafelki)</div>
+                        <div class="ui-tiles">
+                            <span class="ui-tile green">zgłosił się ze sprawdzenia obszaru kolejowego</span>
+                            <span class="ui-tile green">Podczas patrolu uwag nie stwierdzono</span>
+                            <span class="ui-tile green">Polecono udać się w rejon stacji osobowej</span>
+                        </div>
+
+                        <div class="ui-label" style="margin-top:14px;">Dodane zgłoszenie</div>
+                        <div class="ui-tiles">
+                            <span class="ui-tile active">📋 Zgłoszenie – sprawdzenie obszaru</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Generator -->
-            <div class="example-card">
-                <div class="example-visual">
-                    ⚙️
-                    <span class="badge">Przykład 3</span>
+            <!-- KROK 3: Generator wpisów -->
+            <div class="example-step">
+                <div class="example-step-header">
+                    <div class="step-num">3</div>
+                    <h4>Generator wpisów – gotowe zgłoszenie</h4>
                 </div>
-                <div class="example-info">
-                    <h4>Generator wpisów</h4>
-                    <p>
-                        Wybierasz patrole, zgłoszenia, polecenia i uwagi –
-                        system generuje gotowy tekst do skopiowania w kilka sekund.
-                    </p>
+                <div class="example-step-body">
+                    <p>W generatorze wybierasz patrol i zgłoszenie. System od razu składa gotowy tekst do skopiowania.</p>
+                    <div class="ui-mock">
+                        <div class="ui-label">Wybrane elementy</div>
+                        <div class="ui-tiles">
+                            <span class="ui-tile active">🚓 Patrol nr 1</span>
+                            <span class="ui-tile active">📋 Zgłoszenie – sprawdzenie obszaru</span>
+                        </div>
+
+                        <div class="ui-label" style="margin-top:14px;">Wygenerowany wpis</div>
+                        <div class="ui-result">
+                            <strong>Patrol nr 1</strong> zgłosił się ze sprawdzenia obszaru kolejowego.
+                            Podczas patrolu uwag nie stwierdzono. Polecono udać się w rejon stacji osobowej.
+                        </div>
+                        <div style="margin-top:12px;">
+                            <span class="ui-btn">📋 Kopiuj wpis</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Miejsce na film i zdjęcia (do dodania później) -->
