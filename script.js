@@ -13,21 +13,10 @@
     });
 })();
 
-// Formularz kontaktowy
-function handleSubmit(e) {
-    e.preventDefault();
-    const login = document.getElementById('login').value;
-    const email = document.getElementById('email').value;
-    const uwagi = document.getElementById('uwagi').value;
-
-    console.log({ login, email, uwagi });
-
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-
-    // Opcjonalnie: mailto
-    // const subject = encodeURIComponent('Zgłoszenie automatyzacji od ' + login);
-    // const body = encodeURIComponent(`Login: ${login}\nEmail: ${email}\n\nUwagi:\n${uwagi}`);
-    // window.location.href = `mailto:TWOJ_EMAIL@domena.pl?subject=${subject}&body=${body}`;
-}
-
+// Po wysłaniu FormSubmit wraca na stronę do sekcji kontakt
+(function () {
+    const next = document.querySelector('#contactForm input[name="_next"]');
+    if (next) {
+        next.value = window.location.href.split('#')[0] + '#kontakt';
+    }
+})();
